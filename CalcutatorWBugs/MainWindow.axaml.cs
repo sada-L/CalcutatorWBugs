@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -7,10 +7,10 @@ namespace CalcutatorWBugs;
 
 public partial class MainWindow : Window
 {
-    private string Num;
-    private string Temp;
-    private string Oper;
-    private bool IsExp;
+    private string _num;
+    private string _temp;
+    private string _oper;
+    private bool _isExp;
     
     public MainWindow()
     {
@@ -54,19 +54,20 @@ public partial class MainWindow : Window
         ButtonPow3.Click += Pow3OnClick;
         ButtonFactorial.Click += FactorialOnClick;
         ButtonPercent.Click += PercentOnClick;
+        ButtonPow2.Click += Pow2OnClick;
     }
     
     private void ButtonDeleteOnClick(object? sender, RoutedEventArgs e)
     {
-        Num = " ";
-        Temp = " ";
-        Oper = null;
+        _num = " ";
+        _temp = " ";
+        _oper = null;
         TextBoxOutInPut.Text = null;
     }          // CE
     private void ButtonExpansionOnClick(object? sender, RoutedEventArgs e)
     {
-        if (!IsExp) {
-            IsExp = true; 
+        if (!_isExp) {
+            _isExp = true; 
             ButtonExpansion.Content = "<";
             ButtonSqrt.IsVisible = true;
             ButtonPercent.IsVisible = true;
@@ -88,7 +89,7 @@ public partial class MainWindow : Window
             MaxWidth = 540;
         }
         else {
-            IsExp = false; 
+            _isExp = false; 
             ButtonExpansion.Content = ">";
             ButtonSqrt.IsVisible = false;
             ButtonPercent.IsVisible = false;
@@ -112,244 +113,182 @@ public partial class MainWindow : Window
     }       // >
     private void ButtonBackspaceOnClick(object? sender, RoutedEventArgs e)
     {
-        if (Oper == null) {
-            Num = Num.Remove(Num.Length - 1);
-            TextBoxOutInPut.Text = Num;
+        if (_oper == null) {
+            _num = _num.Remove(_num.Length - 1);
+            TextBoxOutInPut.Text = _num;
         }
         else {
-            Temp = Temp.Remove(Temp.Length - 1);
-            TextBoxOutInPut.Text = Temp;
+            _temp = _temp.Remove(_temp.Length - 1);
+            TextBoxOutInPut.Text = _temp;
         }
     }       // <
-    private void ButtonCommaOnClick(object? sender, RoutedEventArgs e)
-    {
-        if (Oper == null) {
-            Num += ",";
-            TextBoxOutInPut.Text = Num;
-        }
-        else {
-            Temp += ",";
-            TextBoxOutInPut.Text = Temp;
-        }
-    }           // ,
     private void ButtonEqualOnClick(object? sender, RoutedEventArgs e)
     {
-        Num = Convert.ToString(Calculate(Oper));
-        TextBoxOutInPut.Text = Num;
+        _num = Convert.ToString(Calculate(_oper));
+        TextBoxOutInPut.Text = _num;
     }           // =
+    
+    private void ButtonCommaOnClick(object? sender, RoutedEventArgs e)
+    {
+        ClickOnNumberButton(",");
+    }           // ,
     private void ButtonNineOnClick(object? sender, RoutedEventArgs e)
     {
-        if (Oper == null) {
-            Num += 9.ToString();
-            TextBoxOutInPut.Text = Num;
-        }
-        else {
-            Temp += 9.ToString();
-            TextBoxOutInPut.Text = Temp;
-        }
+        ClickOnNumberButton(9);
     }            // 9
     private void ButtonEightOnClick(object? sender, RoutedEventArgs e)
     {
-        if (Oper == null) {
-            Num += 8.ToString();
-            TextBoxOutInPut.Text = Num;
-        }
-        else {
-            Temp += 8.ToString();
-            TextBoxOutInPut.Text = Temp;
-        }
+        ClickOnNumberButton(8);
     }           // 8
     private void ButtonSevenOnClick(object? sender, RoutedEventArgs e)
     {
-        if (Oper == null) {
-            Num += 7.ToString();
-            TextBoxOutInPut.Text = Num;
-        }
-        else {
-            Temp += 7.ToString();
-            TextBoxOutInPut.Text = Temp;
-        }
+        ClickOnNumberButton(7);
     }           // 7
     private void ButtonSixOnClick(object? sender, RoutedEventArgs e)
     {
-        if (Oper == null) {
-            Num += 6.ToString();
-            TextBoxOutInPut.Text = Num;
-        }
-        else {
-            Temp += 6.ToString();
-            TextBoxOutInPut.Text = Temp;
-        }
+        ClickOnNumberButton(6);
     }             // 6
     private void ButtonFiveOnClick(object? sender, RoutedEventArgs e)
     {
-        if (Oper == null) {
-            Num += 5.ToString();
-            TextBoxOutInPut.Text = Num;
-        }
-        else {
-            Temp += 5.ToString();
-            TextBoxOutInPut.Text = Temp;
-        }
+        ClickOnNumberButton(5);
     }            // 5
     private void ButtonFourOnClick(object? sender, RoutedEventArgs e)
     {
-        if (Oper == null) {
-            Num += 4.ToString();
-            TextBoxOutInPut.Text = Num;
-        }
-        else {
-            Temp += 4.ToString();
-            TextBoxOutInPut.Text = Temp;
-        }
+        ClickOnNumberButton(4);
     }            // 4
     private void ButtonThreeOnClick(object? sender, RoutedEventArgs e)
     {
-        if (Oper == null) {
-            Num += 3.ToString();
-            TextBoxOutInPut.Text = Num;
-        }
-        else {
-            Temp += 3.ToString();
-            TextBoxOutInPut.Text = Temp;
-        }
+        ClickOnNumberButton(3);
     }           // 3
     private void ButtonTwoOnClick(object? sender, RoutedEventArgs e)
     {
-        if (Oper == null) {
-            Num += 2.ToString();
-            TextBoxOutInPut.Text = Num;
-        }
-        else {
-            Temp += 2.ToString();
-            TextBoxOutInPut.Text = Temp;
-        }
+        ClickOnNumberButton(2);
     }             // 2
     private void ButtonOneOnClick(object? sender, RoutedEventArgs e)
     {
-        if (Oper == null) {
-            Num += 1.ToString();
-            TextBoxOutInPut.Text = Num;
-        }
-        else {
-            Temp += 1.ToString();
-            TextBoxOutInPut.Text = Temp;
-        }
+        ClickOnNumberButton(1);
     }             // 1
     private void ButtonZeroOnClick(object? sender, RoutedEventArgs e)
     {
-        if (Oper == null) {
-            Num += 0.ToString();
-            TextBoxOutInPut.Text = Num;
-        }
-        else {
-            Temp += 0.ToString();
-            TextBoxOutInPut.Text = Temp;
-        }
+        ClickOnNumberButton(0);
     }            // 0
     private void PiOnClick(object? sender, RoutedEventArgs e)
     {
-        if (Oper == null)
-        {
-            Num += Math.PI.ToString();
-            TextBoxOutInPut.Text = Num;
+        ClickOnNumberButton(Math.PI);
+    }                    // Pi
+    private void ClickOnNumberButton(object buttonNumber)
+    {
+        if (_oper == null) {
+            _num += buttonNumber.ToString();
+            TextBoxOutInPut.Text = _num;
         }
         else {
-            Temp += Math.PI.ToString();
-            TextBoxOutInPut.Text = Temp;
+            _temp += buttonNumber.ToString();
+            TextBoxOutInPut.Text = _temp;
         }
-    }                    // Pi
+    }                        // event butt num
     
     private void FactorialOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "fact";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("fact");
+        
     }             // fact
     private void Pow3OnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "p3";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("p3");
+        
     }                  // P3
     private void SqrtYxOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "sqrtyx";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("sqrtyx");
+        
     }                // sqrtYX
     private void Sqrt3OnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "sqrt3";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("sqrt3");
+        
     }                 // sqrt3
     private void Button10PowXOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "10px";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("10px");
+        
     }          // 10PX
     private void LogOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "log";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("log");
+        
     }                   // Log
     private void SinOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "sin";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("sin");
+        
     }                   // Sin
     private void TanOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "tan";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("tan");
+        
     }                   // Tan
     private void CosOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "cos";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("cos");
+        
     }                   // Cos
     private void ButtonSqrtOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "sqrt";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("sqrt");
+        
     }            // Sqrt
     private void ButtonPlusOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "plus";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("plus");
+        
     }            // +
     private void ButtonMinusOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "minus";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("minus");
+        
     }           // - 
     private void ButtonMultOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "mult";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("mult");
+        
     }            // *
     private void ButtonDivideOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "divide";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("divide");
+        
     }          // / 
     private void ButtonLnOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "ln";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("ln");
+        
     }              // Ln
     private void ButtonReciprocOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "recip";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("recip");
+        
     }        // 1/x
     private void ButtonDegreesOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "degrees";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("degrees");
+        
     }         // X^Y
     private void PercentOnClick(object? sender, RoutedEventArgs e)
     {
-        Oper = "percent";
-        TextBoxOutInPut.Text = "0";
+        ClickOnFunctionButton("percent");
+        
     }               // %
+    private void Pow2OnClick(object? sender, RoutedEventArgs e)
+    {
+        ClickOnFunctionButton("p2");
+        
+    }                  // p2
+    private void ClickOnFunctionButton(string operation)
+    {
+        _oper = operation;
+        TextBoxOutInPut.Text = "0";
+    }                         // event butt fun calk
+    
     private double Factorial(double n) => n == 1 ? 1 : n * Factorial(n - 1);        // fact
     private double Calculate(string s)
     {
@@ -357,59 +296,43 @@ public partial class MainWindow : Window
         switch (s)
         {
             case "plus":
-                eql = Convert.ToDouble(Num) + Convert.ToDouble(Temp);
-                break;
+                eql = Convert.ToDouble(_num) + Convert.ToDouble(_temp); break;
             case "minus":
-                eql = Convert.ToDouble(Num) - Convert.ToDouble(Temp);
-                break;
+                eql = Convert.ToDouble(_num) - Convert.ToDouble(_temp); break;
             case "mult":
-                eql = Convert.ToDouble(Num) * Convert.ToDouble(Temp);
-                break;
+                eql = Convert.ToDouble(_num) * Convert.ToDouble(_temp); break;
             case "divide":
-                eql = Convert.ToDouble(Num) / Convert.ToDouble(Temp);
-                break;
+                eql = Convert.ToDouble(_num) / Convert.ToDouble(_temp); break;
             case "sqrt":
-                eql = Math.Sqrt( Convert.ToDouble(Num));
-                break;
-            case "ln":
-                eql = Math.Log(Convert.ToDouble(Num),10);
-                break;
+                eql = Math.Sqrt( Convert.ToDouble(_num)); break;
+            case "ln": 
+                eql = Math.Log(Convert.ToDouble(_num),10); break;
             case "recip":
-                eql =  1/Convert.ToDouble(Num);
-                break;
-            case "fact":
-                eql = Factorial(Convert.ToDouble(Num));
-                break;
-            case "p3":
-                eql = Math.Pow( Convert.ToDouble(Num), 3);
-                break;
-            case "sqrtyx":
-                eql = Math.Pow( Convert.ToDouble(Num), 1/Convert.ToDouble(Temp));
-                break;
+                eql =  1/Convert.ToDouble(_num); break;
+            case "fact": 
+                eql = Factorial(Convert.ToDouble(_num)); break;
+            case "p3": 
+                eql = Math.Pow( Convert.ToDouble(_num), 3); break;
+            case "sqrtyx": 
+                eql = Math.Pow( Convert.ToDouble(_num), 1/Convert.ToDouble(_temp)); break;
             case "sqrt3":
-                eql = Math.Pow( Convert.ToDouble(Num), 1/3);
-                break;
+                eql = Math.Pow( Convert.ToDouble(_num), 1/3); break;
             case "10px":
-                eql = Math.Pow( 10, Convert.ToDouble(Num));
-                break;
-            case "log":
-                eql = Math.Log( Convert.ToDouble(Num), Convert.ToDouble(Temp));
-                break;
-            case "sin":
-                eql = Math.Sin( Convert.ToDouble(Num));
-                break;
-            case "tan":
-                eql = Math.Tan( Convert.ToDouble(Num));
-                break;
-            case "cos":
-                eql = Math.Cos( Convert.ToDouble(Num));
-                break;
-            case "degrees":
-                eql = Math.Pow( Convert.ToDouble(Num), Convert.ToDouble(Temp));
-                break;
-            case "percent":
-                eql = Convert.ToDouble(Num)/100;
-                break;
+                eql = Math.Pow( 10, Convert.ToDouble(_num)); break;
+            case "log": 
+                eql = Math.Log( Convert.ToDouble(_num), Convert.ToDouble(_temp)); break;
+            case "sin": 
+                eql = Math.Sin( Convert.ToDouble(_num)); break;
+            case "tan": 
+                eql = Math.Tan( Convert.ToDouble(_num)); break;
+            case "cos": 
+                eql = Math.Cos( Convert.ToDouble(_num)); break;
+            case "degrees": 
+                eql = Math.Pow( Convert.ToDouble(_num), Convert.ToDouble(_temp)); break;
+            case "percent": 
+                eql = Convert.ToDouble(_num)/100; break;
+            case "p2": 
+                eql = Math.Pow( Convert.ToDouble(_num), 2); break;
         }
         return eql;
     }                                           //Вычисление

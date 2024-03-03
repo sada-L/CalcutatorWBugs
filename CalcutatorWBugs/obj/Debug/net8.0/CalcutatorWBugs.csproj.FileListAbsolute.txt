@@ -129,3 +129,4 @@ C:\Users\sada\RiderProjects\CalcutatorWBugs\CalcutatorWBugs\obj\Debug\net8.0\Cal
 C:\Users\sada\RiderProjects\CalcutatorWBugs\CalcutatorWBugs\obj\Debug\net8.0\CalcutatorWBugs.csproj.CopyComplete
 C:\Users\sada\RiderProjects\CalcutatorWBugs\CalcutatorWBugs\obj\Debug\net8.0\CalcutatorWBugs.genruntimeconfig.cache
 C:\Users\sada\RiderProjects\CalcutatorWBugs\CalcutatorWBugs\obj\Debug\net8.0\ref\CalcutatorWBugs.dll
+C:\Users\sada\RiderProjects\CalcutatorWBugs\CalcutatorWBugs\obj\Debug\net8.0\CalcutatorWBugs.sourcelink.json
