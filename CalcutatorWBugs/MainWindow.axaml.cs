@@ -126,6 +126,7 @@ public partial class MainWindow : Window
     {
         _num = Convert.ToString(Calculate(_oper));
         TextBoxOutInPut.Text = _num;
+        _temp = " ";
     }           // =
     
     private void ButtonCommaOnClick(object? sender, RoutedEventArgs e)
