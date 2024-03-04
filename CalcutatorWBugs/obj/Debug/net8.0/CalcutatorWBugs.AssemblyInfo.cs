@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CalcutatorWBugs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+33a7a58d7ae260fc806bba4d5f0c116bf317d109")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("CalcutatorWBugs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CalcutatorWBugs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
