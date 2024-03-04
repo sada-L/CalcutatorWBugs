@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
@@ -126,6 +127,7 @@ public partial class MainWindow : Window
     {
         _num = Convert.ToString(Calculate(_oper));
         TextBoxOutInPut.Text = _num;
+        _temp = " ";
     }           // =
     
     private void ButtonCommaOnClick(object? sender, RoutedEventArgs e)
@@ -290,50 +292,26 @@ public partial class MainWindow : Window
     }                         // event butt fun calk
     
     private double Factorial(double n) => n == 1 ? 1 : n * Factorial(n - 1);        // fact
-    private double Calculate(string s)
+    private double Calculate(string s) => s switch
     {
-        double eql = 0;
-        switch (s)
-        {
-            case "plus":
-                eql = Convert.ToDouble(_num) + Convert.ToDouble(_temp); break;
-            case "minus":
-                eql = Convert.ToDouble(_num) - Convert.ToDouble(_temp); break;
-            case "mult":
-                eql = Convert.ToDouble(_num) * Convert.ToDouble(_temp); break;
-            case "divide":
-                eql = Convert.ToDouble(_num) / Convert.ToDouble(_temp); break;
-            case "sqrt":
-                eql = Math.Sqrt( Convert.ToDouble(_num)); break;
-            case "ln": 
-                eql = Math.Log(Convert.ToDouble(_num),10); break;
-            case "recip":
-                eql =  1/Convert.ToDouble(_num); break;
-            case "fact": 
-                eql = Factorial(Convert.ToDouble(_num)); break;
-            case "p3": 
-                eql = Math.Pow( Convert.ToDouble(_num), 3); break;
-            case "sqrtyx": 
-                eql = Math.Pow( Convert.ToDouble(_num), 1/Convert.ToDouble(_temp)); break;
-            case "sqrt3":
-                eql = Math.Pow( Convert.ToDouble(_num), 1/3); break;
-            case "10px":
-                eql = Math.Pow( 10, Convert.ToDouble(_num)); break;
-            case "log": 
-                eql = Math.Log( Convert.ToDouble(_num), Convert.ToDouble(_temp)); break;
-            case "sin": 
-                eql = Math.Sin( Convert.ToDouble(_num)); break;
-            case "tan": 
-                eql = Math.Tan( Convert.ToDouble(_num)); break;
-            case "cos": 
-                eql = Math.Cos( Convert.ToDouble(_num)); break;
-            case "degrees": 
-                eql = Math.Pow( Convert.ToDouble(_num), Convert.ToDouble(_temp)); break;
-            case "percent": 
-                eql = Convert.ToDouble(_num)/100; break;
-            case "p2": 
-                eql = Math.Pow( Convert.ToDouble(_num), 2); break;
-        }
-        return eql;
-    }                                           //Вычисление
+        "plus" => Convert.ToDouble(_num) + Convert.ToDouble(_temp),
+        "minus" => Convert.ToDouble(_num) - Convert.ToDouble(_temp),
+        "mult" => Convert.ToDouble(_num) * Convert.ToDouble(_temp),
+        "divide" => Convert.ToDouble(_num) / Convert.ToDouble(_temp),
+        "sqrt" => Math.Sqrt( Convert.ToDouble(_num)),
+        "ln" => Math.Log(Convert.ToDouble(_num),10),
+        "recip" => 1/Convert.ToDouble(_num),
+        "fact" => Factorial(Convert.ToDouble(_num)),
+        "p3" => Math.Pow( Convert.ToDouble(_num), 3),
+        "sqrtyx" => Math.Pow( Convert.ToDouble(_num), 1/Convert.ToDouble(_temp)),
+        "sqrt3" => Math.Pow( Convert.ToDouble(_num), 1/3),
+        "10px" => Math.Pow( 10, Convert.ToDouble(_num)),
+        "log" => Math.Log( Convert.ToDouble(_num), Convert.ToDouble(_temp)),
+        "sin" => Math.Sin( Convert.ToDouble(_num)),
+        "tan" => Math.Tan( Convert.ToDouble(_num)),
+        "cos" => Math.Cos( Convert.ToDouble(_num)),
+        "degrees" => Math.Pow( Convert.ToDouble(_num), Convert.ToDouble(_temp)),
+        "percent" => Convert.ToDouble(_num)/100,
+        "p2" => Math.Pow( Convert.ToDouble(_num), 2)
+    };                                        //Вычисление
 }
