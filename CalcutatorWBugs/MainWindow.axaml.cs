@@ -313,5 +313,5 @@ public partial class MainWindow : Window
         "degrees" => Math.Pow( Convert.ToDouble(_num), Convert.ToDouble(_temp)),
         "percent" => Convert.ToDouble(_num)/100,
         "p2" => Math.Pow( Convert.ToDouble(_num), 2)
-    };                                        //Вычисление
+    };                                        //Вычисление 
 }
